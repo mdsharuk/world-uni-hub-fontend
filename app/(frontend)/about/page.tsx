@@ -52,7 +52,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container py-14 sm:py-16">
+      <section className="container pt-8 pb-14 sm:pt-10 sm:pb-16">
         <div className="mx-auto max-w-3xl space-y-6">
           {sections.map((section) => (
             <div key={section.title}>
