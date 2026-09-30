@@ -1,0 +1,120 @@
+$nav-gradient: linear-gradient(90deg, #9663ea, #4d5cee);
+
+@mixin hover-underline {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background-image: $nav-gradient;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.nav-link {
+  transition: color 0.2s ease;
+
+  &:hover,
+  &[data-active="true"] {
+    background-image: $nav-gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@keyframes mega-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mega-link-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mega-menu {
+  animation: mega-menu-in 0.22s ease-out;
+}
+
+.mega-menu .mega-link {
+  animation: mega-link-in 0.3s ease-out both;
+}
+
+@for $i from 1 through 6 {
+  .mega-menu ul > li:nth-child(#{$i}) .mega-link {
+    animation-delay: #{$i * 0.03}s;
+  }
+}
+
+.mega-heading {
+  @include hover-underline;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4d5cee;
+  }
+}
+
+.mega-link-label {
+  @include hover-underline;
+  transition: color 0.2s ease;
+}
+
+.mega-link:hover .mega-link-label {
+  color: #4d5cee;
+}
+
+.mega-link:hover .mega-link-label::after {
+  transform: scaleX(1);
+}
+
+.link-hover {
+  @include hover-underline;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4d5cee;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .mega-menu,
+  .mega-menu .mega-link {
+    animation: none;
+  }
+
+  .mega-heading::after,
+  .mega-link-label::after {
+    transition: none;
+  }
+}

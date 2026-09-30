@@ -1,0 +1,23 @@
+$button-gradient: linear-gradient(90deg, #9663ea, #4d5cee);
+$button-gradient-hover: linear-gradient(90deg, #8a54e0, #3f4ddc);
+
+.btn-gradient {
+  background-image: $button-gradient;
+  color: #ffffff;
+
+  &:hover {
+    background-image: $button-gradient-hover;
+  }
+}
+
+.text-gradient-hover {
+  display: inline-block;
+  transition: color 0.2s ease;
+
+  &:hover {
+    background-image: $button-gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
